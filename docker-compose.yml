@@ -114,7 +114,7 @@ services:
       org.label-schema.group: "monitoring"
 
   caddy:
-    image: stefanprodan/caddy
+    image: caddy/caddy:2.3.0
     container_name: caddy
     ports:
       - "3000:3000"
@@ -125,7 +125,7 @@ services:
       - ./caddy:/etc/caddy
     environment:
       - ADMIN_USER=${ADMIN_USER:-admin}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-JDJhJDE0JGpTcjZTMlBLTXZsd1VTcXI0endCanVzUHdUY1RLenU5U1VVcHVhQUZUWkNjREpqa3ljdDZD}
     restart: unless-stopped
     networks:
       - monitor-net
