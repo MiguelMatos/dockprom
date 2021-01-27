@@ -41,30 +41,191 @@ groups:
 
 - name: containers
   rules:
-  - alert: jenkins_down
-    expr: absent(container_memory_usage_bytes{name="jenkins"})
+  - alert: mqtt
+    expr: absent(container_memory_usage_bytes{name="mqtt"})
     for: 30s
     labels:
       severity: critical
     annotations:
-      summary: "Jenkins down"
-      description: "Jenkins container is down for more than 30 seconds."
+      summary: "MQTT Down"
+      description: "MQTT container is down for more than 30 seconds."
 
-  - alert: jenkins_high_cpu
-    expr: sum(rate(container_cpu_usage_seconds_total{name="jenkins"}[1m])) / count(node_cpu_seconds_total{mode="system"}) * 100 > 10
+  - alert: mqtt_high_cpu
+    expr: sum(rate(container_cpu_usage_seconds_total{name="mqtt"}[1m])) / count(node_cpu_seconds_total{mode="system"}) * 100 > 10
     for: 30s
     labels:
       severity: warning
     annotations:
-      summary: "Jenkins high CPU usage"
-      description: "Jenkins CPU usage is {{ humanize $value}}%."
+      summary: "MQTT high CPU usage"
+      description: "MQTT CPU usage is {{ humanize $value}}%."
 
-  - alert: jenkins_high_memory
-    expr: sum(container_memory_usage_bytes{name="jenkins"}) > 1200000000
+  - alert: mqtt_high_memory
+    expr: sum(container_memory_usage_bytes{name="mqtt"}) > 1200000000
     for: 30s
     labels:
       severity: warning
     annotations:
-      summary: "Jenkins high memory usage"
-      description: "Jenkins memory consumption is at {{ humanize $value}}."
+      summary: "MQTT high memory usage"
+      description: "MQTT memory consumption is at {{ humanize $value}}."
+ 
+  - alert: mariadb
+    expr: absent(container_memory_usage_bytes{name="mariadb"})
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "MariaDB Down"
+      description: "MariaDB container is down for more than 30 seconds."
 
+  - alert: mariadb_high_cpu
+    expr: sum(rate(container_cpu_usage_seconds_total{name="mariadb"}[1m])) / count(node_cpu_seconds_total{mode="system"}) * 100 > 10
+    for: 30s
+    labels:
+      severity: warning
+    annotations:
+      summary: "MariaDB high CPU usage"
+      description: "MariaDB CPU usage is {{ humanize $value}}%."
+
+  - alert: mariadb_high_memory
+    expr: sum(container_memory_usage_bytes{name="mariadb"}) > 1200000000
+    for: 30s
+    labels:
+      severity: warning
+    annotations:
+      summary: "MariaDB high memory usage"
+      description: "MariaDB memory consumption is at {{ humanize $value}}."
+
+  - alert: homeassistant
+    expr: absent(container_memory_usage_bytes{name="homeassistant"})
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "HomeAssistant Down"
+      description: "HomeAssistant container is down for more than 30 seconds."
+
+  - alert: homeassistant_high_cpu
+    expr: sum(rate(container_cpu_usage_seconds_total{name="homeassistant"}[1m])) / count(node_cpu_seconds_total{mode="system"}) * 100 > 10
+    for: 30s
+    labels:
+      severity: warning
+    annotations:
+      summary: "HomeAssistant high CPU usage"
+      description: "HomeAssistant CPU usage is {{ humanize $value}}%."
+
+  - alert: homeassistant_high_memory
+    expr: sum(container_memory_usage_bytes{name="homeassistant"}) > 1200000000
+    for: 30s
+    labels:
+      severity: warning
+    annotations:
+      summary: "HomeAssistant high memory usage"
+      description: "HomeAssistant memory consumption is at {{ humanize $value}}."
+
+ - alert: zigbee2mqtt
+    expr: absent(container_memory_usage_bytes{name="zigbee2mqtt"})
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "Zigbee2MQTT Down"
+      description: "Zigbee2MQTT container is down for more than 30 seconds."
+
+  - alert: zigbee2mqtt_high_cpu
+    expr: sum(rate(container_cpu_usage_seconds_total{name="zigbee2mqtt"}[1m])) / count(node_cpu_seconds_total{mode="system"}) * 100 > 10
+    for: 30s
+    labels:
+      severity: warning
+    annotations:
+      summary: "Zigbee2MQTT high CPU usage"
+      description: "Zigbee2MQTT CPU usage is {{ humanize $value}}%."
+
+  - alert: zigbee2mqtt_high_memory
+    expr: sum(container_memory_usage_bytes{name="zigbee2mqtt"}) > 1200000000
+    for: 30s
+    labels:
+      severity: warning
+    annotations:
+      summary: "Zigbee2MQTT high memory usage"
+      description: "Zigbee2MQTT memory consumption is at {{ humanize $value}}."
+
+  - alert: nodered
+    expr: absent(container_memory_usage_bytes{name="nodered"})
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "NodeRed Down"
+      description: "NodeRed container is down for more than 30 seconds."
+
+  - alert: nodered_high_cpu
+    expr: sum(rate(container_cpu_usage_seconds_total{name="nodered"}[1m])) / count(node_cpu_seconds_total{mode="system"}) * 100 > 10
+    for: 30s
+    labels:
+      severity: warning
+    annotations:
+      summary: "NodeRed high CPU usage"
+      description: "NodeRed CPU usage is {{ humanize $value}}%."
+
+  - alert: nodered_high_memory
+    expr: sum(container_memory_usage_bytes{name="nodered"}) > 1200000000
+    for: 30s
+    labels:
+      severity: warning
+    annotations:
+      summary: "NodeRed high memory usage"
+      description: "NodeRed memory consumption is at {{ humanize $value}}."
+
+  - alert: unifi-controller
+    expr: absent(container_memory_usage_bytes{name="unifi-controller"})
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "unifi-controller Down"
+      description: "unifi-controller container is down for more than 30 seconds."
+
+  - alert: unifi-controller_high_cpu
+    expr: sum(rate(container_cpu_usage_seconds_total{name="unifi-controller"}[1m])) / count(node_cpu_seconds_total{mode="system"}) * 100 > 10
+    for: 30s
+    labels:
+      severity: warning
+    annotations:
+      summary: "unifi-controller high CPU usage"
+      description: "unifi-controller CPU usage is {{ humanize $value}}%."
+
+  - alert: unifi-controller_high_memory
+    expr: sum(container_memory_usage_bytes{name="unifi-controller"}) > 1200000000
+    for: 30s
+    labels:
+      severity: warning
+    annotations:
+      summary: "unifi-controller high memory usage"
+      description: "unifi-controller memory consumption is at {{ humanize $value}}."
+
+  - alert: influxdb
+    expr: absent(container_memory_usage_bytes{name="influxdb"})
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "influxdb Down"
+      description: "influxdb container is down for more than 30 seconds."
+
+  - alert: influxdb_high_cpu
+    expr: sum(rate(container_cpu_usage_seconds_total{name="influxdb"}[1m])) / count(node_cpu_seconds_total{mode="system"}) * 100 > 10
+    for: 30s
+    labels:
+      severity: warning
+    annotations:
+      summary: "influxdb high CPU usage"
+      description: "influxdb CPU usage is {{ humanize $value}}%."
+
+  - alert: influxdb_high_memory
+    expr: sum(container_memory_usage_bytes{name="influxdb"}) > 1200000000
+    for: 30s
+    labels:
+      severity: warning
+    annotations:
+      summary: "influxdb high memory usage"
+      description: "influxdb memory consumption is at {{ humanize $value}}."
