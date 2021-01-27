@@ -122,7 +122,7 @@ groups:
       summary: "HomeAssistant high memory usage"
       description: "HomeAssistant memory consumption is at {{ humanize $value}}."
 
- - alert: zigbee2mqtt
+  - alert: zigbee2mqtt
     expr: absent(container_memory_usage_bytes{name="zigbee2mqtt"})
     for: 30s
     labels:
