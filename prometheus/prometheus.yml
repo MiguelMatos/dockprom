@@ -34,6 +34,10 @@ scrape_configs:
     static_configs:
       - targets: ['pushgateway:9091']
 
+  - job_name: 'grafana-image-rendering-service'
+    static_configs:
+      - targets: ['renderer:3080']
+
 
 alerting:
   alertmanagers:
@@ -51,3 +55,6 @@ alerting:
 #    scrape_interval: 10s
 #    static_configs:
 #      - targets: ['eventlog-proxy:5000', 'eventlog:5000']
+
+scrape_configs:
+  
