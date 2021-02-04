@@ -107,8 +107,8 @@ services:
 
   renderer:
     image: grafana/grafana-image-renderer:latest
-    expose:
-      - 3080
+    ports:
+      - "3080:8081"
     environment:
       - ENABLE_METRICS=true
     labels:
