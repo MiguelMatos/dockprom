@@ -106,6 +106,7 @@ services:
       org.label-schema.group: "monitoring"
 
   renderer:
+    container_name: renderer
     image: grafana/grafana-image-renderer:latest
     ports:
       - "3080:8081"
