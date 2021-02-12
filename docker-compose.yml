@@ -97,6 +97,7 @@ services:
       - GF_RENDERING_SERVER_URL=http://bravo-server.local:3080/render
       - GF_RENDERING_CALLBACK_URL=http://bravo-server.local:3000/
       - GF_LOG_FILTERS=rendering:debug
+      - GF_ALLOW_EMBEDDING=true
     restart: unless-stopped
     expose:
       - 3000
